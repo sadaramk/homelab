@@ -1,0 +1,68 @@
+{{if .Title}}
+# {{.Title}}
+{{end}}
+
+
+{{if .Description}}
+{{.Description}}
+{{end}}
+
+
+{{if .Badges}}
+{{range .Badges}}
+[![{{.Name}}](https://img.shields.io/badge/{{.Name}}-{{.Value}}-{{.Color}}.svg)]({{.URL}})
+{{end}}
+{{end}}
+
+
+
+{{if .Sections}}
+## Table of Contents
+
+{{range .Sections}}
+- [{{.Title}}](###{{.Link}})
+{{end}}
+{{end}}
+
+
+{{if .Sections}}
+{{range .Sections}}
+### {{.Title}}
+
+{{.Content}}
+
+
+{{end}}
+{{end}}
+
+
+{{if .References}}
+## References
+{{range .References}}
+- [{{.Name}}](###{{.URL}}):
+    - {{.Description}}
+{{end}}
+{{end}}
+
+
+{{if .License}}
+## License
+
+{{.License}}
+{{end}}
+
+
+{{if .Authors}}
+## Authors
+{{range .Authors}}
+[[{{.Name}}]]({{.URL}})
+{{end}}
+{{end}}
+
+
+{{if .Anchors}}
+## Anchors
+{{range .Anchors}}
+[[{{.Name}}]]({{.URL}})
+{{end}}
+{{end}}

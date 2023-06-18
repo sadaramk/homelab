@@ -1,0 +1,17 @@
+### macOS ###
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Environment variables & Sensitive Information
+*.env
+*.agekey
+*.pub
+*.key
+
+# k8s
+kubeconfig
+
+# Ansible
+xanmanning.k3s*

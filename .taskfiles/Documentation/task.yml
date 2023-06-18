@@ -1,0 +1,32 @@
+version: "3"
+
+tasks:
+  check-go:
+    cmds:
+      - go version
+    silent: true
+    error:
+      - echo "Go is not installed or not found in the PATH"
+  gen:
+    desc: Generate README.md
+    deps: [check-go,build]
+    dir: 'docs/'
+    cmds:
+      - ./main
+      - rm -f main
+  build:
+    desc: Build Document Generator
+    cmds:
+     - rm -f go.mod go.sum
+     - go mod init main
+     - go mod tidy
+     - go vet
+     - go get gopkg.in/yaml.v3
+     - go build main
+     - rm -f go.mod go.sum
+     - mv main ../main
+    dir: 'docs/generator/'
+  clean:
+    desc: Remove generated files
+    cmds:
+      - rm -rf README.md

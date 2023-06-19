@@ -1,5 +1,5 @@
 Title: "HOMELAB 🏡 "
-Description: "Revamping my Mac Mini into a Homelab for Continuous Learning 🚧 "
+Description: "Revamping my Mac Mini into a Homelab for Continuous Open Learning 🎓"
 # Badges:
 #   - Name: Build
 #     Value: passing
@@ -32,16 +32,27 @@ Sections:
           - [Remove Development](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack)
 
       ### Homelab
-        - Install [go-task](https://taskfile.dev/)
+        - Step 1 - Install [go-task](https://taskfile.dev/)
         ```
         brew install go-task
+
+        # List Available Tasks
+        task -l
         ```
+        - Step 2 - Install Pre-Requisites on the Mac
+        ```
+        # Run initial Task to install pre-requisites
+        task mac:init
+         ```
   - Title: 📂 Project Structure
     Content: TODO
 References:
   - Name: Task Dev
     Description: Task is a task runner / build tool that aims to be simpler and easier to use than, for example [GNU MAKE](https://www.gnu.org/software/make/)
     URL: https://taskfile.dev/
+  - Name: YAML Lint
+    Description: A linter for YAML files.
+    URL: https://yamllint.readthedocs.io/
   - name: Windows Subsystem for Linux (Ubuntu)
     Description: WSL enables you to use Linux tools, like Bash or Grep, completely integrated with Windows tools, like PowerShell or Visual Studio Code, with no need to dual-boot.
     URL: https://docs.microsoft.com/en-us/windows/wsl/install

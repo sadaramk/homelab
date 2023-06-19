@@ -1,5 +1,4 @@
 version: "3"
-
 tasks:
   init:
     desc: Initialize the project dependencies with Brew
@@ -11,17 +10,7 @@ tasks:
           Homebrew is not installed. Please install it from https://brew.sh
     vars:
       DEPS: >-
-        age
-        ansible
-        direnv
-        go-task/tap/go-task
-        yamllint
-        yq
-        jq
-        prettier
-        kubernetes-cli
-        kustomize
-        helm
+        age ansible direnv go-task/tap/go-task yamllint yamlfmt yq jq prettier kubernetes-cli kustomize helm
   undo:
     desc: Remove project dependencies with Brew
     cmds:
@@ -32,14 +21,4 @@ tasks:
           Homebrew is not installed. Please install it from https://brew.sh
     vars:
       DEPS: >-
-        age
-        ansible
-        direnv
-        go-task/tap/go-task
-        yamllint
-        yq
-        jq
-        prettier
-        kubernetes-cli
-        kustomize
-        helm
+        age ansible direnv go-task/tap/go-task yamllint yamlfmt yq jq prettier kubernetes-cli kustomize helm

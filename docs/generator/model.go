@@ -31,7 +31,7 @@ type Section struct {
 // Authors holds the structure for Anchor data
 type Authors struct {
 	Name string
-	URL  string
+	Link  string
 }
 
 // Anchor holds the structure for Anchor data

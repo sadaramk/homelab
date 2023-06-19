@@ -4,7 +4,7 @@
 
 
 
-Revamping my Mac Mini into a Homelab for Continuous Learning 🚧 
+Revamping my Mac Mini into a Homelab for Continuous Open Learning 🎓
 
 
 
@@ -59,10 +59,18 @@ This project was setup with 2 configuration modes in mind Ⓜ️
     - [Remove Development](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack)
 
 ### Homelab
-  - Install [go-task](https://taskfile.dev/)
+  - Step 1 - Install [go-task](https://taskfile.dev/)
   ```
   brew install go-task
+
+  # List Available Tasks
+  task -l
   ```
+  - Step 2 - Install Pre-Requisites on the Mac
+  ```
+  # Run initial Task to install pre-requisites
+  task mac:init
+   ```
 
 
 
@@ -81,6 +89,9 @@ TODO
 
 - [Task Dev](###https://taskfile.dev/):
     - Task is a task runner / build tool that aims to be simpler and easier to use than, for example [GNU MAKE](https://www.gnu.org/software/make/)
+
+- [YAML Lint](###https://yamllint.readthedocs.io/):
+    - A linter for YAML files.
 
 - [Windows Subsystem for Linux (Ubuntu)](###https://docs.microsoft.com/en-us/windows/wsl/install):
     - WSL enables you to use Linux tools, like Bash or Grep, completely integrated with Windows tools, like PowerShell or Visual Studio Code, with no need to dual-boot.
@@ -115,7 +126,7 @@ MIT
 
 [[Naga Sadaram (Kal)]]()
 
-[[]]()
+[[]](https://twitter.com/KalSadaram)
 
 
 

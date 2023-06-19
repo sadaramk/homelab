@@ -1,0 +1,11 @@
+version: "3"
+tasks:
+  ylint:
+    desc: Check YAML files with yamllint
+    deps: [yfmt]
+    cmds:
+      - yamllint -c .yamllint.yaml .
+  yfmt:
+    desc: Format YAML files with yamlfmt
+    cmds:
+      - yamlfmt .

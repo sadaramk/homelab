@@ -1,9 +1,10 @@
 version: "3"
-dotenv: [".config.env"]
+dotenv: ["config.env"]
 includes:
   mac: .taskfiles/mac/task.yml
   com: .taskfiles/common/task.yml
   docs: .taskfiles/Documentation/task.yml
+  k3s: .taskfiles/k3s/task.yml
 tasks:
   default:
     silent: true

@@ -9,6 +9,7 @@
     "will-stone.in-any-case",
     "EditorConfig.editorconfig",
     "PKief.material-icon-theme",
-    "IronGeek.vscode-env"
+    "IronGeek.vscode-env",
+    "inercia.vscode-k3d"
   ]
 }

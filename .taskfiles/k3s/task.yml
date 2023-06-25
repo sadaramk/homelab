@@ -1,0 +1,31 @@
+version: "3"
+tasks:
+  pre-req:
+    desc: Install Pre-requisites
+    cmds:
+      - brew install {{.DEPS}} {{.CLI_ARGS}}
+    preconditions:
+      - sh: command -v brew
+        msg: |
+          Homebrew is not installed. Please install it from https://brew.sh
+    vars:
+      DEPS: >-
+        k3d
+  init:
+    desc: Initialize K3S Cluster using K3D
+    cmds:
+      - echo "Creating K3S Cluster"
+      - k3d cluster create $K3S_CLUSTER_NAME
+    deps: [pre-req]
+  undo:
+    desc: Remove project dependencies with Brew and uninstall k3s cluster
+    cmds:
+      - k3d cluster delete $K3S_CLUSTER_NAME
+      - brew uninstall {{.DEPS}} {{.CLI_ARGS}}
+    preconditions:
+      - sh: command -v brew
+        msg: |
+          Homebrew is not installed. Please install it from https://brew.sh
+    vars:
+      DEPS: >-
+        k3d

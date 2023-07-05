@@ -5,7 +5,7 @@ metadata:
 spec:
   destination:
     namespace: argocd
-    server: https://kubernetes.default.svc
+    server: http://localhost:6445/
   project: argocd
   source:
     path: kubernetes/apps/argocd

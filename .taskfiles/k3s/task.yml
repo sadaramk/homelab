@@ -1,31 +1,21 @@
 version: "3"
 tasks:
-  pre-req:
-    desc: Install Pre-requisites
+  check-docker:
     cmds:
-      - brew install {{.DEPS}} {{.CLI_ARGS}}
-    preconditions:
-      - sh: command -v brew
-        msg: |
-          Homebrew is not installed. Please install it from https://brew.sh
-    vars:
-      DEPS: >-
-        k3d
-  init:
-    desc: Initialize K3S Cluster using K3D
+      - cmd: docker info > /dev/null 2>&1
+        status: 0
+  create-k3s-cluster:
+    deps: [check-docker]
     cmds:
-      - echo "Creating K3S Cluster"
-      - k3d cluster create $K3S_CLUSTER_NAME
-    deps: [pre-req]
-  undo:
-    desc: Remove project dependencies with Brew and uninstall k3s cluster
+      - echo "Creating K3S Cluster using config"
+      - k3d cluster create --config infrastructure/kubernetes/server/config/homelabk3sconfig.yml # TODO - Add a check to see if cluster already exists
+      - echo "Check cluster info and nodes"
+      - kubectl cluster-info
+      - echo "Check cluster nodes"
+      - kubectl get nodes
+      - echo "Check cluster pods"
+      - kubectl get pods --all-namespaces -o wide
+  remove-k3s-cluster:
     cmds:
-      - k3d cluster delete $K3S_CLUSTER_NAME
-      - brew uninstall {{.DEPS}} {{.CLI_ARGS}}
-    preconditions:
-      - sh: command -v brew
-        msg: |
-          Homebrew is not installed. Please install it from https://brew.sh
-    vars:
-      DEPS: >-
-        k3d
+      - echo "Removing K3S Cluster $K3S_CLUSTER_NAME"
+      - k3d cluster delete --config infrastructure/kubernetes/server/config/homelabk3sconfig.yml # TODO - Add a check to see if cluster already exists

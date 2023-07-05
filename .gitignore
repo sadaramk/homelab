@@ -15,3 +15,6 @@ kubeconfig
 
 # Ansible
 xanmanning.k3s*
+
+#TODO SOME ENVIRONMENT VARIABLES ARE NOT LOADING DURING KUBECTL APPLY
+real-secret-cloudflare.yaml

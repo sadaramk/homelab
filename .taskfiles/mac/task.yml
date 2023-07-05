@@ -1,7 +1,27 @@
 version: "3"
+includes:
+  k3s: ../k3s/task.yml
 tasks:
-  init:
-    desc: Initialize the project dependencies with Brew
+  up:
+    deps: [pre-req]
+    desc: Install Pre-requisites and K3S Cluster using K3D
+    cmds:
+      - task: k3s:create-k3s-cluster
+      - kubectl cluster-info
+  argocd:
+    desc: Setup ArgoCD using Helm
+    cmds:
+      - kustomize build kubernetes/apps/argocd | kubectl apply -f -
+      - sleep 20
+      - kubectl get pods -n argocd
+      - echo argocd admin initial-password -n argocd
+      - kubectl port-forward svc/argocd-server -n argocd 8080:443
+  down:
+    desc: Remove project dependencies with Brew and uninstall k3s cluster
+    cmds:
+      - task: k3s:remove-k3s-cluster
+      - task: uninstall-pre-req
+  pre-req:
     cmds:
       - brew install {{.DEPS}} {{.CLI_ARGS}}
     preconditions:
@@ -10,9 +30,8 @@ tasks:
           Homebrew is not installed. Please install it from https://brew.sh
     vars:
       DEPS: >-
-        age ansible direnv go-task/tap/go-task yamllint yamlfmt yq jq prettier kubernetes-cli kustomize helm
-  undo:
-    desc: Remove project dependencies with Brew
+        age direnv go-task/tap/go-task yamllint yamlfmt yq jq prettier kubernetes-cli kustomize helm k3d cilium-cli argocd
+  uninstall-pre-req:
     cmds:
       - brew uninstall {{.DEPS}} {{.CLI_ARGS}}
     preconditions:
@@ -21,4 +40,7 @@ tasks:
           Homebrew is not installed. Please install it from https://brew.sh
     vars:
       DEPS: >-
-        age ansible direnv go-task/tap/go-task yamllint yamlfmt yq jq prettier kubernetes-cli kustomize helm
+        age direnv go-task/tap/go-task yamllint yamlfmt yq jq prettier kubernetes-cli kustomize helm k3d cilium-cli argocd
+  temp:
+    cmds:
+      - echo "Key is $SECRET_ACME_EMAIL" $SECRET_ACME_EMAIL

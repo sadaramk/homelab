@@ -15,6 +15,6 @@ spec:
   description: Project to configure argocd self-manage application
   destinations:
     - namespace: argocd
-      server: http://localhost:6445/
+      server: https://kubernetes.default.svc
   sourceRepos:
     - https://github.com/sadaramk/homelab.git

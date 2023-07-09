@@ -17,9 +17,11 @@ Sections:
       My ultimate goal with this homelab project is to replicate the seamless experience I have achieved on my Macs. In doing so, I aim to maintain a public repository where I can openly share my newfound knowledge and document any mistakes I make along the way. By embracing this transparent approach, I hope to foster continuous learning and personal growth.
   - Title: ⌛ Roadmap
     Content: |
-      - [x] Setup a new github repository. [Repo](https://github.com//sadaramk/homelab)
-      - [ ] Develop or utilize existing framework to generate README.MD
+      - [X] Setup a new github repository. [Repo](https://github.com//sadaramk/homelab)
+      - [X] Develop or utilize existing framework to generate README.MD
       - [ ] Document Project Structure
+      - [ ] Configure ARGOCD Apps ()
+
   - Title: 📝 Pre-Requisites
     Content: |
       This project was setup with 2 configuration modes in mind Ⓜ️
@@ -41,9 +43,15 @@ Sections:
         ```
         - Step 2 - Install Pre-Requisites on the Mac
         ```
-        # Run initial Task to install pre-requisites
-        task mac:init
+        # Below will install necessary pre-requisites on the Mac
+        task mac:up
          ```
+        - Step 3 - Install ARGOCD
+        ```
+        # Below will install necessary pre-requisites on the Mac
+        task mac:up
+         ```
+
   - Title: 📂 Project Structure
     Content: TODO
 References:

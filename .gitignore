@@ -18,3 +18,10 @@ xanmanning.k3s*
 
 #TODO SOME ENVIRONMENT VARIABLES ARE NOT LOADING DURING KUBECTL APPLY
 real-secret-cloudflare.yaml
+
+# Heml Charts
+charts
+
+# IGNORE WIP FOLDERS
+cert-manager
+cert-manager_org

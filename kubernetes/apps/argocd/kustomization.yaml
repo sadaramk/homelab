@@ -1,10 +1,18 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: argocd
 
 resources:
+  # Namespace
   - resources/namespace.yaml
-  - github.com/argoproj/argo-cd/manifests/cluster-install?ref=v2.1.1
+  # ArgoCD source path
+  - github.com/argoproj/argo-cd/manifests/cluster-install?ref=v2.6.12
+  # # ArgoCD Application for ArgoCD [ARGOCD APP TAKES A FEW MINUTES TO CREATE SO CANNOT ADD APP STRAIT AWAY]
+  # - argocd-app.yaml
 patches:
+  # ArgoCD config map for user creation
   - path: patches/argocd-cm.yaml
+  # ArgoCD RBAC config map for RBAC
   - path: patches/argocd-rbac-cm.yaml

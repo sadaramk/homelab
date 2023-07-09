@@ -13,8 +13,8 @@ spec:
         - p, proj:argocd:read-sync, applications, get, argocd/*, allow
         - p, proj:argocd:read-sync, applications, sync, argocd/*, allow
   clusterResourceWhitelist:
-    - group: "*"
-      kind: "*"
+    - group: ""
+      kind: "Namespace"
   description: Project to configure security applications
   destinations:
     - namespace: argocd

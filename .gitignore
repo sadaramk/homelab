@@ -23,5 +23,4 @@ real-secret-cloudflare.yaml
 charts
 
 # IGNORE WIP FOLDERS
-cert-manager
 cert-manager_org

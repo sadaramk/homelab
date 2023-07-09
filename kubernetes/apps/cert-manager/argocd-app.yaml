@@ -1,0 +1,20 @@
+# REF https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/application.yaml
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager
+  namespace: argocd
+spec:
+  destination:
+    namespace: cert-manager
+    server: https://kubernetes.default.svc
+  # The project the application belongs to.
+  project: security
+  source:
+    path: kubernetes/apps/cert-manager
+    repoURL: https://github.com/sadaramk/homelab.git
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: false

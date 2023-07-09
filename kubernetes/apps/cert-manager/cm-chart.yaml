@@ -1,0 +1,19 @@
+---
+apiVersion: builtin
+kind: HelmChartInflationGenerator
+metadata:
+  name: cert-manager
+# The name of the chart that you want to use.
+name: cert-manager
+# The URL of the repository which contains the chart. If this is provided, the generator will try to fetch remote charts. Otherwise it will try to load local chart in chartHome
+repo: https://charts.jetstack.io
+# Version of the chart. Will use latest version if this is omitted
+version: v1.12.0
+# The namespace which will be used by --namespace flag in helm template command
+namespace: cert-manager
+# A path to the values file.
+valuesFile: values.yaml
+# specifies if Helm should also generate CustomResourceDefinitions. Defaults to ‘false’.
+IncludeCRDs: true
+# MORE REF https://kubectl.docs.kubernetes.io/references/kustomize/builtins/#_helmchartinflationgenerator_
+# For testing kustomize build --enable-helm kubernetes/apps/cert-manager

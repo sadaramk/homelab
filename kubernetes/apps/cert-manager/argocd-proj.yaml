@@ -1,9 +1,11 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: argocd
+  name: security
   namespace: argocd
 spec:
+  sourceNamespaces:
+    - cert-manager
   roles:
     - name: read-sync
       description: read and sync privileges
@@ -13,7 +15,7 @@ spec:
   clusterResourceWhitelist:
     - group: "*"
       kind: "*"
-  description: Project to configure argocd self-manage application
+  description: Project to configure security applications
   destinations:
     - namespace: argocd
       server: https://kubernetes.default.svc

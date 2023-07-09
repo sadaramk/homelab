@@ -1,0 +1,5 @@
+cert-manager: #defined by either the name or alias of your dependency in Chart.yaml
+  namespace: cert-manager
+  ingressShim.defaultIssuerKind: ClusterIssuer
+  ingressShim.defaultIssuerName: letsencrypt-staging
+  extraArgs: '{--dns01-recursive-nameservers-only,--dns01-self-check-nameservers=9.9.9.9:53\,1.1.1.1:53}'

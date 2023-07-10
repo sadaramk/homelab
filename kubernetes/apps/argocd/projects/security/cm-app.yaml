@@ -6,6 +6,8 @@ metadata:
   name: cert-manager
   # You'll usually want to add your resources to the argocd namespace.
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
     namespace: cert-manager
@@ -17,6 +19,10 @@ spec:
     path: kubernetes/apps/cert-manager
     repoURL: https://github.com/sadaramk/homelab.git
     targetRevision: HEAD
+    # Helm chart parameters
+    helm:
+      valueFiles:
+        - Values.yaml
   # Sync policy settings
   syncPolicy:
     # automated sync by default retries failed attempts 5 times with following delays between attempts ( 5s, 10s, 20s, 40s, 80s ); retry controlled using `retry` field.

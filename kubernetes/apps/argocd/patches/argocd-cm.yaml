@@ -6,3 +6,6 @@ data:
   accounts.naga: apiKey, login
   accounts.gitops-ci: apiKey
   admin.enabled: "true"
+  # https://argo-cd.readthedocs.io/en/stable/operator-manual/app-any-namespace/
+  # https://github.com/argoproj/argo-cd/blob/3b496ceca92d12ebf3fd3015cb3e8748e8ee8e4c/docs/operator-manual/argocd-cmd-params-cm.yaml#L27
+  application.namespaces: argocd, security

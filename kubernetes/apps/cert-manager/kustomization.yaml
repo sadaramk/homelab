@@ -10,7 +10,3 @@ generators:
 resources:
   # Namespace
   - resources/namespace.yaml
-  # Argo Project for cert-manager
-  - argocd-proj.yaml
-  # ArgoCD Application for cert-manager
-  - argocd-app.yaml

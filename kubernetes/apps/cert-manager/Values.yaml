@@ -2,3 +2,4 @@ cert-manager: #defined by either the name or alias of your dependency in Chart.y
   namespace: cert-manager
   ingressShim.defaultIssuerKind: ClusterIssuer
   ingressShim.defaultIssuerName: letsencrypt-staging
+  installCRDs: true

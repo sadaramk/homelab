@@ -14,9 +14,9 @@ spec:
   project: security
   # Source of the application manifests
   source:
-    chart: cert-manager
-    repoURL: https://charts.jetstack.io
-    targetRevision: "1.12.0"
+    path: kubernetes/apps/cert-manager
+    repoURL: https://github.com/sadaramk/homelab.git
+    targetRevision: HEAD
   # Sync policy settings
   syncPolicy:
     # automated sync by default retries failed attempts 5 times with following delays between attempts ( 5s, 10s, 20s, 40s, 80s ); retry controlled using `retry` field.

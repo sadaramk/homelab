@@ -1,23 +1,55 @@
+# REF https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/project.yaml
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
   name: security
   namespace: argocd
+  # Finalizer that ensures that project is not deleted until it is not referenced by any application
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
-  sourceNamespaces:
-    - cert-manager
-  roles:
-    - name: read-sync
-      description: read and sync privileges
-      policies:
-        - p, proj:argocd:read-sync, applications, get, argocd/*, allow
-        - p, proj:argocd:read-sync, applications, sync, argocd/*, allow
-  clusterResourceWhitelist:
-    - group: ""
-      kind: "Namespace"
   description: Project to configure security applications
+  # sourceNamespaces:
+  #   - cert-manager
+  # Deny all cluster-scoped resources from being created, except for Namespace
+  clusterResourceWhitelist:
+    - group: "*"
+      kind: "*"
+  # Allow all namespaced-scoped resources to be created, except for ResourceQuota, LimitRange, NetworkPolicy
+  namespaceResourceBlacklist:
+    - group: ""
+      kind: ResourceQuota
+    - group: ""
+      kind: LimitRange
+    - group: ""
+      kind: NetworkPolicy
+  # Enables namespace orphaned resource monitoring.
+  orphanedResources:
+    warn: false
+
+  roles:
+    # A role which provides read-only access to all applications in the project
+    - name: read-only
+      description: Read-only privileges to security
+      policies:
+        - p, proj:security:read-only, applications, get, security/*, allow
+      groups:
+        - my-oidc-group
+
+    # A role which provides sync privileges to only the cert-manager application, e.g. to provide
+    # sync privileges to a CI system
+    - name: ci-role
+      description: Sync privileges for cert-manager
+      policies:
+        - p, proj:security:ci-role, applications, sync, security/cert-manager, allow
+
   destinations:
     - namespace: argocd
       server: https://kubernetes.default.svc
+    - namespace: cert-manager
+      server: https://kubernetes.default.svc
+    - namespace: kube-system
+      server: https://kubernetes.default.svc
+  # Allow manifests to deploy from any Git repos
   sourceRepos:
-    - https://github.com/sadaramk/homelab.git
+    - "*"

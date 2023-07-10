@@ -21,6 +21,7 @@ real-secret-cloudflare.yaml
 
 # Heml Charts
 charts
+Chart.lock
 
 # IGNORE WIP FOLDERS
 cert-manager_org

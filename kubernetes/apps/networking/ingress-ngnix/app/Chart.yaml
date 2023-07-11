@@ -1,0 +1,10 @@
+# REF - https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-helm/
+apiVersion: v2
+name: ingress-nginx
+version: 1.0.0
+dependencies:
+  - name: ingress-nginx
+    version: v0.18.0
+    repository: https://kubernetes.github.io/ingress-nginx
+    alias: ingress-nginx
+    condition: ingress-nginx.enabled

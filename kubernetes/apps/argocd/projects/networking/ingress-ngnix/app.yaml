@@ -1,0 +1,56 @@
+# REF https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/application.yaml
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ingress-nginx
+  # You'll usually want to add your resources to the argocd namespace.
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: ingress-nginx
+    server: https://kubernetes.default.svc
+  # The project the application belongs to.
+  project: networking
+  # Source of the application manifests
+  source:
+    path: kubernetes/apps/networking/ingress-nginx/app
+    repoURL: https://github.com/sadaramk/homelab.git
+    targetRevision: HEAD
+    # Helm chart parameters
+    helm:
+      valueFiles:
+        - Values.yaml
+  # Sync policy settings
+  syncPolicy:
+    # automated sync by default retries failed attempts 5 times with following delays between attempts ( 5s, 10s, 20s, 40s, 80s ); retry controlled using `retry` field.
+    automated:
+      # Specifies if resources should be pruned during auto-syncing ( false by default ).
+      prune: true
+      # Specifies if partial app sync should be executed when resources are changed only in target Kubernetes cluster and no git change detected ( false by default ).
+      selfHeal: true
+      # Allows deleting all application resources during automatic syncing ( false by default ).
+      allowEmpty: true
+    # Sync options which modifies sync behavior
+    syncOptions:
+      # disables resource validation (equivalent to 'kubectl apply --validate=false') ( true by default ).
+      - Validate=true
+      # Namespace Auto-Creation ensures that namespace specified as the application destination exists in the destination cluster.
+      - CreateNamespace=true
+    # The retry feature is available since v1.7
+    retry:
+      # number of failed sync attempt retries; unlimited number of attempts if less than 0
+      limit: 5
+      backoff:
+        # the amount to back off. Default unit is seconds, but could also be a duration (e.g. "2m", "1h")
+        duration: 5s
+        # a factor to multiply the base duration after each failed retry
+        factor: 2
+        # the maximum amount of time allowed for the backoff strategy
+        maxDuration: 3m
+  # Extra information to show in the Argo CD Application details tab
+  info:
+    - name: "ingress-nginx:"
+      value: "https://kubernetes.github.io/ingress-nginx/"

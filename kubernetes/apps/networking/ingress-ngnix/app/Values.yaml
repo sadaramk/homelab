@@ -1,0 +1,3 @@
+ingress-nginx: #defined by either the name or alias of your dependency in Chart.yaml
+  namespace: ingress-nginx
+  controller.healthStatus: true

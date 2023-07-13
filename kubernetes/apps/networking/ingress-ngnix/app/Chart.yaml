@@ -1,10 +1,11 @@
 # REF - https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-helm/
 apiVersion: v2
-name: ingress-nginx
+name: k3s-ingress-nginx
+description: Homelab Ingress Controller
+type: application
 version: 1.0.0
+appVersion: 1.0.0
 dependencies:
   - name: ingress-nginx
-    version: v0.18.0
-    repository: https://kubernetes.github.io/ingress-nginx
-    alias: ingress-nginx
-    condition: ingress-nginx.enabled
+    version: "3.36.0" # Specify the version you want to use.
+    repository: "https://kubernetes.github.io/ingress-nginx"

@@ -2,4 +2,3 @@ ingress-nginx: #defined by either the name or alias of your dependency in Chart.
   namespace: ingress-nginx
   controller:
     healthStatus: true
-    replicaCount: 2

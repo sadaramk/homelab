@@ -16,7 +16,7 @@ spec:
   project: networking
   # Source of the application manifests
   source:
-    path: kubernetes/apps/networking/ingress-ngnix/app
+    path: kubernetes/apps/networking/ingress-nginx/app
     repoURL: https://github.com/sadaramk/homelab.git
     targetRevision: HEAD
     # Helm chart parameters
